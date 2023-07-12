@@ -29,33 +29,41 @@ io.on("connection", (socket) => {
 
     allUsers.push({ id: socket.id, username, room });
     gameRoomUsers = allUsers.filter((user) => user.room === room);
-    premierJoueur = gameRoomUsers[0].username
-    io.to(room).emit("gameroom_users", {gameRoomUsers, premierJoueur});
+    premierJoueur = gameRoomUsers[0].username;
+    io.to(room).emit("gameroom_users", { gameRoomUsers, premierJoueur });
   });
 
-  
-  socket.on("leave_room", (data) => {
-    const {username, room} = data
-    console.log(allUsers)
-    console.log(allUsers.find((user) => user.id === socket.id))
-    socket.leave(room);
+  socket.on("leave_room", () => {
+    socket.leave(allUsers.find((user) => user.id === socket.id).room);
     allUsers = leaveRoom(socket.id, allUsers);
   });
 
   socket.on("update_stade_C", (stadeSuivant) => {
-    io.to(allUsers.find((user) => user.id === socket.id).room).emit("update_stade_S", stadeSuivant);
+    io.to(allUsers.find((user) => user.id === socket.id).room).emit(
+      "update_stade_S",
+      stadeSuivant
+    );
   });
 
   socket.on("update_joueur_choisi_C", (reponseJoueur) => {
-    io.to(allUsers.find((user) => user.id === socket.id).room).emit("update_joueur_choisi_S", reponseJoueur);
+    io.to(allUsers.find((user) => user.id === socket.id).room).emit(
+      "update_joueur_choisi_S",
+      reponseJoueur
+    );
   });
 
   socket.on("update_question_C", (nouvelleQuestion) => {
-    io.to(allUsers.find((user) => user.id === socket.id).room).emit("update_question_S", nouvelleQuestion);
+    io.to(allUsers.find((user) => user.id === socket.id).room).emit(
+      "update_question_S",
+      nouvelleQuestion
+    );
   });
 
   socket.on("update_tour_joueur_C", (joueurSuivant) => {
-    io.to(allUsers.find((user) => user.id === socket.id).room).emit("update_tour_joueur_S", joueurSuivant);
+    io.to(allUsers.find((user) => user.id === socket.id).room).emit(
+      "update_tour_joueur_S",
+      joueurSuivant
+    );
   });
 
   socket.on("update_affichage_reponse_C", (affichage) => {
@@ -63,7 +71,10 @@ io.on("connection", (socket) => {
     if (Math.floor(Math.random() * 2) === 0) {
       result = false;
     }
-    io.to(allUsers.find((user) => user.id === socket.id).room).emit("update_affichage_reponse_S", { affichage, result });
+    io.to(allUsers.find((user) => user.id === socket.id).room).emit(
+      "update_affichage_reponse_S",
+      { affichage, result }
+    );
   });
 });
 

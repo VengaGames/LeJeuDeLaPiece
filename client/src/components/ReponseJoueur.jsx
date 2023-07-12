@@ -16,7 +16,7 @@ function ReponseJoueur({
             {joueurChoisi} à toi de jouer !
           </h2>
           <p className="flex-100 text-xl p-3 overflow-auto">
-            {tourJoueur} t'a posé cette question : {question}
+            {tourJoueur} t`&apoa posé cette question : {question}
           </p>
           <p className="flex-100 text-xl p-3">Qui veux tu répondre ?</p>
           {roomUsers.map((joueur) =>
@@ -28,7 +28,7 @@ function ReponseJoueur({
                 value={joueur.username}
                 onClick={(e) => {
                   let reponseJoueur = e.target.value;
-                  let joueurSuivant = joueurChoisi
+                  let joueurSuivant = joueurChoisi;
                   socket.emit("update_stade_C", stadeSuivant);
                   socket.emit("update_tour_joueur_C", joueurSuivant);
                   socket.emit("update_joueur_choisi_C", reponseJoueur);
@@ -42,10 +42,10 @@ function ReponseJoueur({
       ) : (
         <div className="flex flex-wrap gap-2">
           <h2 className="font-semibold flex-100 text-center text-4xl p-2">
-            C'est à {joueurChoisi} de jouer !
+            C`&apoest à {joueurChoisi} de jouer !
           </h2>
           <p className="flex-100 text-xl p-3">
-            Attends qu'il finisse de répondre !
+            Attends qu`&apoil finisse de répondre !
           </p>
         </div>
       )}

@@ -1,11 +1,5 @@
-function ChoixJoueur({
-  socket,
-  roomUsers,
-  username,
-  tourJoueur
-}) {
-
-  let stadeSuivant = "ChoixQuestion"
+function ChoixJoueur({ socket, roomUsers, username, tourJoueur }) {
+  let stadeSuivant = "ChoixQuestion";
 
   return (
     <div>
@@ -24,7 +18,7 @@ function ChoixJoueur({
                 key={joueur.id}
                 value={joueur.username}
                 onClick={(e) => {
-                  let reponseJoueur = e.target.value
+                  let reponseJoueur = e.target.value;
                   socket.emit("update_stade_C", stadeSuivant);
                   socket.emit("update_joueur_choisi_C", reponseJoueur);
                 }}
@@ -37,10 +31,10 @@ function ChoixJoueur({
       ) : (
         <div className="flex flex-wrap gap-2">
           <h2 className="font-semibold flex-100 text-center text-4xl p-2">
-            C'est à {tourJoueur} de jouer !
+            C`&aposest à {tourJoueur} de jouer !
           </h2>
           <p className="flex-100 text-xl p-3">
-            Attends qu'il choisisse le joueur à qui poser une question !
+            Attends qu`&apoil choisisse le joueur à qui poser une question !
           </p>
         </div>
       )}

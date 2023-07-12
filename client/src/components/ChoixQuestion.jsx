@@ -1,17 +1,11 @@
-function ChoixQuestion({
-  username,
-  socket,
-  tourJoueur,
-  joueurChoisi
-}) {
-
-  let stadeSuivant = "ReponseJoueur"
+function ChoixQuestion({ username, socket, tourJoueur, joueurChoisi }) {
+  let stadeSuivant = "ReponseJoueur";
 
   const onSubmit = (e) => {
     e.preventDefault();
-    let nouvelleQuestion = e.target.elements.question.value
-    socket.emit("update_question_C", nouvelleQuestion)
-    socket.emit("update_stade_C", stadeSuivant)
+    let nouvelleQuestion = e.target.elements.question.value;
+    socket.emit("update_question_C", nouvelleQuestion);
+    socket.emit("update_stade_C", stadeSuivant);
   };
   return (
     <div>
@@ -41,10 +35,10 @@ function ChoixQuestion({
       ) : (
         <div className="flex flex-wrap gap-2">
           <h2 className="font-semibold flex-100 text-center text-4xl p-2">
-            C'est à {tourJoueur} de jouer !
+            C`&aposest à {tourJoueur} de jouer !
           </h2>
           <p className="flex-100 text-xl p-3">
-            Attends qu'il finisse de choisir la question à poser !
+            Attends qu`&apoil finisse de choisir la question à poser !
           </p>
         </div>
       )}

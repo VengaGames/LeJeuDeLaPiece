@@ -4,10 +4,10 @@ import ChoixJoueur from "./ChoixJoueur";
 import ChoixQuestion from "./ChoixQuestion";
 import ReponseJoueur from "./ReponseJoueur";
 import Piece from "./Piece";
+import Popup from "./Popup";
 
 function Game({
   socket,
-  room,
   username,
   stade,
   tourJoueur,
@@ -18,13 +18,14 @@ function Game({
   question,
   updateQuestion,
 }) {
-  const [roomUsers, setRoomUsers] = useState([]);
+  const [roomUsers, updateRoomJoueurs] = useState([]);
+  const [afficherPopup, updateAfficherPopup] = useState(false);
 
   useEffect(() => {
     socket.on("gameroom_users", (data) => {
-      const {gameRoomUsers, premierJoueur} = data
-      setRoomUsers(gameRoomUsers);
-      updateTourJoueur(premierJoueur)
+      const { gameRoomUsers, premierJoueur } = data;
+      updateRoomJoueurs(gameRoomUsers);
+      updateTourJoueur(premierJoueur);
     });
     socket.on("update_stade_S", (data) => {
       updateStade(data);
@@ -45,10 +46,6 @@ function Game({
     updateQuestion,
     updateTourJoueur,
   ]);
-
-  window.onbeforeunload = function () {
-    return "Data will be lost if you leave the page, are you sure?";
-  };
 
   function switchCase(stade) {
     switch (stade) {
@@ -105,10 +102,12 @@ function Game({
 
   return (
     <div>
-      <FlecheRetour socket={socket} username={username} room={room} />
+      {console.log(roomUsers)}
+      <FlecheRetour updateAfficherPopup={updateAfficherPopup} />
       <div className="max-w-xl mt-24 rounded-2xl bg-white p-4">
         {switchCase(stade)}
       </div>
+      <Popup socket={socket} afficherPopup={afficherPopup} />
     </div>
   );
 }

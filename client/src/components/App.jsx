@@ -12,7 +12,7 @@ function App() {
   const [username, setUsername] = useState();
   const [room, setRoom] = useState("");
   const [stade, updateStade] = useState("ChoixJoueur");
-  const [tourJoueur, updateTourJoueur] = useState("Matis");
+  const [tourJoueur, updateTourJoueur] = useState("");
   const [joueurChoisi, updateJoueurChoisi] = useState();
   const [question, updateQuestion] = useState();
 

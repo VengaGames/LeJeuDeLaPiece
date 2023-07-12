@@ -6,9 +6,9 @@ function Piece({ tourJoueur, socket, username, joueurChoisi, question }) {
 
   useEffect(() => {
     socket.on("update_affichage_reponse_S", (data) => {
-        const {affichage, result} = data
+      const { affichage, result } = data;
       updateAffichageReponse(affichage);
-      resultat.current = result
+      resultat.current = result;
     });
   }, [socket, updateAffichageReponse]);
 
@@ -35,7 +35,7 @@ function Piece({ tourJoueur, socket, username, joueurChoisi, question }) {
       onClick={() => {
         affichage = false;
         let nouvelleQuestion = "";
-        let joueurSuivant = joueurChoisi
+        let joueurSuivant = joueurChoisi;
         socket.emit("update_affichage_reponse_C", affichage);
         socket.emit("update_tour_joueur_C", joueurSuivant);
         socket.emit("update_question_C", nouvelleQuestion);
@@ -83,10 +83,12 @@ function Piece({ tourJoueur, socket, username, joueurChoisi, question }) {
             {joueurChoisi} a été choisi par {tourJoueur} !
           </h2>
           {!affichageReponse ? (
-          <p className="flex-100 text-xl p-3">
-            Il doit maintenant lancer la pièce !
-          </p>
-          ) : reponse }
+            <p className="flex-100 text-xl p-3">
+              Il doit maintenant lancer la pièce !
+            </p>
+          ) : (
+            reponse
+          )}
         </div>
       )}
     </div>
