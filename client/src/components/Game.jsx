@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import FlecheRetour from "./FlecheRetour";
 import ChoixJoueur from "./ChoixJoueur";
 import ChoixQuestion from "./ChoixQuestion";
 import ReponseJoueur from "./ReponseJoueur";
 import Piece from "./Piece";
-import Popup from "./Popup";
+import Modal from "./Modal";
 
 function Game({
   socket,
@@ -19,7 +20,9 @@ function Game({
   updateQuestion,
 }) {
   const [roomUsers, updateRoomJoueurs] = useState([]);
-  const [afficherPopup, updateAfficherPopup] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     socket.on("gameroom_users", (data) => {
@@ -102,12 +105,36 @@ function Game({
 
   return (
     <div>
-      {console.log(roomUsers)}
-      <FlecheRetour updateAfficherPopup={updateAfficherPopup} />
+      <FlecheRetour setIsOpen={setIsOpen} />
+      <Modal isOpen={isOpen}>
+        {/* Le contenu de la modale */}
+        <div className="p-4 bg-white rounded-2xl">
+          <h2 className="font-semibold flex-100 text-center text-4xl p-2">
+            Es tu sur de vouloir quitter ?
+          </h2>
+          <button
+            className="bg-white border-solid border-black border p-1 rounded hover:scale-150"
+            type="button"
+            onClick={() => {
+              socket.emit("leave_room");
+              setIsOpen(false);
+              navigate("/", { replace: true });
+            }}
+          >
+            Oui
+          </button>
+          <button
+            className="bg-white border-solid border-black border p-1 rounded hover:scale-150"
+            type="button"
+            onClick={() => setIsOpen(false)}
+          >
+            Non
+          </button>
+        </div>
+      </Modal>
       <div className="max-w-xl mt-24 rounded-2xl bg-white p-4">
         {switchCase(stade)}
       </div>
-      <Popup socket={socket} afficherPopup={afficherPopup} />
     </div>
   );
 }

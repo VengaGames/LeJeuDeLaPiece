@@ -1,10 +1,9 @@
-function FlecheRetour({ updateAfficherPopup }) {
+function FlecheRetour({ setIsOpen }) {
+  
   return (
     <div
       className="w-fit absolute left-2 top-20"
-      onClick={() => {
-        updateAfficherPopup(true);
-      }}
+      onClick={() => setIsOpen(true)}
     >
       <svg
         stroke="currentColor"
