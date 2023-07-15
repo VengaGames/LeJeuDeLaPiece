@@ -11,7 +11,7 @@ const socket = io.connect("http://localhost:4000");
 function App() {
   const [username, setUsername] = useState();
   const [room, setRoom] = useState("");
-  const [stade, updateStade] = useState("ChoixJoueur");
+  const [stade, updateStade] = useState("WaitingRoom");
   const [tourJoueur, updateTourJoueur] = useState("");
   const [joueurChoisi, updateJoueurChoisi] = useState();
   const [question, updateQuestion] = useState();

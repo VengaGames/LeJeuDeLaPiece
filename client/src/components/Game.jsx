@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import WaitingRoom from "./WaitingRoom";
 import FlecheRetour from "./FlecheRetour";
 import ChoixJoueur from "./ChoixJoueur";
 import ChoixQuestion from "./ChoixQuestion";
@@ -19,10 +20,18 @@ function Game({
   question,
   updateQuestion,
 }) {
+  const navigate = useNavigate();
+
   const [roomUsers, updateRoomJoueurs] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    socket.on("gameroom_users", (data) => {
+      const { gameRoomUsers, premierJoueur } = data;
+      updateRoomJoueurs(gameRoomUsers);
+      updateTourJoueur(premierJoueur);
+    });
+  }, [socket, updateRoomJoueurs, updateTourJoueur]);
 
   useEffect(() => {
     socket.on("gameroom_users", (data) => {
@@ -48,10 +57,20 @@ function Game({
     updateJoueurChoisi,
     updateQuestion,
     updateTourJoueur,
+    updateRoomJoueurs,
   ]);
 
   function switchCase(stade) {
     switch (stade) {
+      case "WaitingRoom":
+        return (
+          <WaitingRoom
+            socket={socket}
+            roomUsers={roomUsers}
+            username={username}
+            tourJoueur={tourJoueur}
+          />
+        );
       case "ChoixJoueur":
         return (
           <ChoixJoueur
@@ -107,7 +126,6 @@ function Game({
     <div>
       <FlecheRetour setIsOpen={setIsOpen} />
       <Modal isOpen={isOpen}>
-        {/* Le contenu de la modale */}
         <div className="p-4 bg-white rounded-2xl">
           <h2 className="font-semibold flex-100 text-center text-4xl p-2">
             Es tu sur de vouloir quitter ?

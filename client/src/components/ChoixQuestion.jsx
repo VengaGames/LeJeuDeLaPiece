@@ -35,10 +35,10 @@ function ChoixQuestion({ username, socket, tourJoueur, joueurChoisi }) {
       ) : (
         <div className="flex flex-wrap gap-2">
           <h2 className="font-semibold flex-100 text-center text-4xl p-2">
-            C`&aposest à {tourJoueur} de jouer !
+            C&apos;est à {tourJoueur} de jouer !
           </h2>
           <p className="flex-100 text-xl p-3">
-            Attends qu`&apoil finisse de choisir la question à poser !
+            Attends qu&apos;il finisse de choisir la question à poser !
           </p>
         </div>
       )}

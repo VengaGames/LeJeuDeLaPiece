@@ -16,7 +16,7 @@ function ReponseJoueur({
             {joueurChoisi} à toi de jouer !
           </h2>
           <p className="flex-100 text-xl p-3 overflow-auto">
-            {tourJoueur} t`&apoa posé cette question : {question}
+            {tourJoueur} t&apos;a posé cette question : {question}
           </p>
           <p className="flex-100 text-xl p-3">Qui veux tu répondre ?</p>
           {roomUsers.map((joueur) =>
@@ -42,10 +42,10 @@ function ReponseJoueur({
       ) : (
         <div className="flex flex-wrap gap-2">
           <h2 className="font-semibold flex-100 text-center text-4xl p-2">
-            C`&apoest à {joueurChoisi} de jouer !
+            C&apos;est à {joueurChoisi} de jouer !
           </h2>
           <p className="flex-100 text-xl p-3">
-            Attends qu`&apoil finisse de répondre !
+            Attends qu&apos;il finisse de répondre !
           </p>
         </div>
       )}

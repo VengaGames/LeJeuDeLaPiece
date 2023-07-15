@@ -31,10 +31,10 @@ function ChoixJoueur({ socket, roomUsers, username, tourJoueur }) {
       ) : (
         <div className="flex flex-wrap gap-2">
           <h2 className="font-semibold flex-100 text-center text-4xl p-2">
-            C`&aposest à {tourJoueur} de jouer !
+            C&apos;est à {tourJoueur} de jouer !
           </h2>
           <p className="flex-100 text-xl p-3">
-            Attends qu`&apoil choisisse le joueur à qui poser une question !
+            Attends qu&apos;il choisisse le joueur à qui poser une question !
           </p>
         </div>
       )}
