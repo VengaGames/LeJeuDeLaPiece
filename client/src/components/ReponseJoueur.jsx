@@ -11,13 +11,14 @@ function ReponseJoueur({
   return (
     <div>
       {username === joueurChoisi ? (
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 justify-center">
           <h2 className="font-semibold flex-100 text-center text-4xl p-2">
             {joueurChoisi} à toi de jouer !
           </h2>
           <p className="flex-100 text-xl p-3 overflow-auto">
-            {tourJoueur} t&apos;a posé cette question : {question}
+            {tourJoueur} t&apos;a posé cette question :
           </p>
+          <p className="text-2xl">{question}</p>
           <p className="flex-100 text-xl p-3">Qui veux tu répondre ?</p>
           {roomUsers.map((joueur) =>
             joueur.username !== joueurChoisi &&

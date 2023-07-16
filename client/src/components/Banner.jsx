@@ -2,7 +2,7 @@ import vengaicon from "../assets/vengaicon.jpeg";
 
 function Banner({ room }) {
   return (
-    <div>
+    <header>
       <nav className="p-3 border-gray-700 bg-[#242531]">
         <div className="container flex flex-wrap items-center justify-center mx-auto">
           <div className="flex flex-row justify-center items-center">
@@ -22,7 +22,7 @@ function Banner({ room }) {
           </div>
         </div>
       </nav>
-    </div>
+    </header>
   );
 }
 

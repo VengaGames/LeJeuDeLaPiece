@@ -4,7 +4,7 @@ function ChoixJoueur({ socket, roomUsers, username, tourJoueur }) {
   return (
     <div>
       {username === tourJoueur ? (
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 justify-around">
           <h2 className="font-semibold flex-100 text-center text-4xl p-2">
             {tourJoueur} à toi de jouer !
           </h2>

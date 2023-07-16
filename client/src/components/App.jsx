@@ -19,7 +19,7 @@ function App() {
   return (
     <Router>
       <Banner room={room} />
-      <div className="w-full h-full flex flex-col items-center justify-center p-3">
+      <main className="w-full h-full flex flex-col items-center justify-center p-3">
         <Routes>
           <Route
             path="/"
@@ -52,7 +52,7 @@ function App() {
             }
           />
         </Routes>
-      </div>
+      </main>
       <Footer />
     </Router>
   );

@@ -3,11 +3,11 @@ function WaitingRoom({ socket, roomUsers, username, tourJoueur }) {
 
   return (
     <div>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2 justify-content align-items flex-col">
         <h2 className="font-semibold flex-100 text-center text-4xl p-2">
           Il faut minimum 4 joueurs pour commencer la partie !
         </h2>
-        <ul>
+        <ul className="flex-100 text-center">
           {roomUsers.map((joueur) => (
             <li key={joueur.id}>{joueur.username}</li>
           ))}

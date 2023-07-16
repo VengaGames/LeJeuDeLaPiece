@@ -17,13 +17,13 @@ function Piece({ tourJoueur, socket, username, joueurChoisi, question }) {
   let reponse;
   if (resultat.current) {
     reponse = (
-      <p className="flex-100 text-xl p-3">
+      <p className="flex-100 text-xl p-2">
         Pile ! La question était : {question}
       </p>
     );
   } else {
     reponse = (
-      <p className="flex-100 text-xl p-3">
+      <p className="flex-100 text-xl p-2">
         Face ! On ne connaitra jamais la réponse.
       </p>
     );
@@ -47,7 +47,7 @@ function Piece({ tourJoueur, socket, username, joueurChoisi, question }) {
   );
 
   let tourSuivant = (
-    <div>
+    <div className="flex flex-wrap flex-100 justify-center">
       {reponse}
       {boutonTourSuivant}
     </div>

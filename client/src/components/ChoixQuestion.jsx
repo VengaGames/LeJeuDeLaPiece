@@ -17,12 +17,15 @@ function ChoixQuestion({ username, socket, tourJoueur, joueurChoisi }) {
           <p className="flex-100 text-xl p-3">
             Quelle question veux tu poser à {joueurChoisi} ?
           </p>
-          <form className="flex-100 p-3 mx-6" onSubmit={onSubmit}>
+          <form
+            className="flex flex-col p-3 mx-6 gap-2 align-items flex-100"
+            onSubmit={onSubmit}
+          >
             <input
               type="text"
               name="question"
               id="question"
-              className="border-solid border-black border"
+              className="border-solid border-black border flex-100"
             />
             <button
               type="submit"

@@ -126,12 +126,12 @@ function Game({
     <div>
       <FlecheRetour setIsOpen={setIsOpen} />
       <Modal isOpen={isOpen}>
-        <div className="p-4 bg-white rounded-2xl">
+        <div className="p-4 bg-white rounded-2xl flex flex-wrap justify-around gap-2">
           <h2 className="font-semibold flex-100 text-center text-4xl p-2">
             Es tu sur de vouloir quitter ?
           </h2>
           <button
-            className="bg-white border-solid border-black border p-1 rounded hover:scale-150"
+            className="bg-white border-solid border-black border p-1 rounded hover:scale-150 "
             type="button"
             onClick={() => {
               socket.emit("leave_room");
@@ -150,7 +150,7 @@ function Game({
           </button>
         </div>
       </Modal>
-      <div className="max-w-xl mt-24 rounded-2xl bg-white p-4">
+      <div className="max-w-xl rounded-2xl bg-white p-4">
         {switchCase(stade)}
       </div>
     </div>
